@@ -7,10 +7,11 @@ export default function AvatarChip(props) {
 
     return (
         <>
-            <Chip
+            <Chip 
                 avatar={<Avatar src={source} />}
                 label={ `${props.trader == 'peacekeeper' ? "$" : "₽"} ${props.price}`}
                 variant="outlined"
+                color={props.color}
             />  
         </>
     );
