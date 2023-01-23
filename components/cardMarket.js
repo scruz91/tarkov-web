@@ -11,8 +11,8 @@ import { useState } from "react";
 
 import AvatarChip from "./avatarChip";
 import UsedInTasks from "./usedInTask";
-import CardCraft from "./cardCraft";
-import CardBarter from "./cardBarter";
+import UsedInCraft from "./usedInCraft";
+import UsedInBarter from "./usedInBarter";
 
 export default function CardMarket({ items }) {
   const [expanded, setExpanded] = useState("panel1");
@@ -95,10 +95,10 @@ export default function CardMarket({ items }) {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Crafting</Typography>
+                  <Typography>Craft</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <CardCraft craftsUsing={craftsUsing} />
+                  <UsedInCraft craftsUsing={craftsUsing} />
                 </AccordionDetails>
               </Accordion>
             ) : (
@@ -111,10 +111,10 @@ export default function CardMarket({ items }) {
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                 >
-                  <Typography>Barter</Typography>
+                  <Typography>Trade</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
-                  <CardBarter bartersUsing={bartersUsing} />
+                  <UsedInBarter bartersUsing={bartersUsing} />
                 </AccordionDetails>
               </Accordion>
             ) : (
