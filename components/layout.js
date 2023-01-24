@@ -1,10 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import styles from "../styles/layout.module.css";
-import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
-const name = "Your Name";
 export const siteTitle = "PriceCheck";
 
 export default function Layout({ children, home }) {
@@ -25,20 +23,7 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-        {home ? (
-          <></>
-        ) : (
-          <>
-            <Link href="/"></Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
-              </Link>
-            </h2>
-          </>
-        )}
-      </header>
+      <header className={styles.header}>{home ? <></> : <></>}</header>
       <main>{children}</main>
       {!home && (
         <div className={styles.backToHome}>
