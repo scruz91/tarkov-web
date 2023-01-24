@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 
 export default function UsedInTasks({ tasks }) {
   return (
-    <React.Fragment>
+    <>
       {tasks.map(({ name, trader, wikiLink, minPlayerLevel }) => (
         <Typography
           key={name}
@@ -17,6 +17,6 @@ export default function UsedInTasks({ tasks }) {
           </Link>
         </Typography>
       ))}
-    </React.Fragment>
+    </>
   );
 }

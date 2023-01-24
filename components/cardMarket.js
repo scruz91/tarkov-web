@@ -23,7 +23,7 @@ export default function CardMarket({ items }) {
   };
 
   return (
-    <React.Fragment>
+    <>
       {items.map(
         ({
           id,
@@ -125,6 +125,6 @@ export default function CardMarket({ items }) {
           </Grid>
         )
       )}
-    </React.Fragment>
+    </>
   );
 }

@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 
 export default function UsedInBarter({ bartersUsing }) {
   return (
-    <React.Fragment>
+    <>
       {bartersUsing.map(({ level, rewardItems, trader }) =>
         rewardItems.map(({ item }) => (
           <Typography
@@ -16,6 +16,6 @@ export default function UsedInBarter({ bartersUsing }) {
           </Typography>
         ))
       )}
-    </React.Fragment>
+    </>
   );
 }

@@ -6,13 +6,13 @@ export default function AvatarChip(props) {
   const source = `../images/${props.trader}.webp`;
 
   return (
-    <React.Fragment>
+    <>
       <Chip
         avatar={<Avatar src={source} />}
         label={`${props.trader == "peacekeeper" ? "$" : "₽"} ${props.price}`}
         variant="outlined"
         color={props.color}
       />
-    </React.Fragment>
+    </>
   );
 }

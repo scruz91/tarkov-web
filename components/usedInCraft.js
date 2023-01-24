@@ -3,7 +3,7 @@ import Typography from "@mui/material/Typography";
 
 export default function UsedInCraft({ craftsUsing }) {
   return (
-    <React.Fragment>
+    <>
       {craftsUsing.map(({ level, rewardItems, station }) =>
         rewardItems.map(({ item }) => (
           <Typography
@@ -16,6 +16,6 @@ export default function UsedInCraft({ craftsUsing }) {
           </Typography>
         ))
       )}
-    </React.Fragment>
+    </>
   );
 }
