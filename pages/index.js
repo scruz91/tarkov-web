@@ -8,6 +8,10 @@ import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import LoadingButton from "@mui/lab/LoadingButton";
 import CardMarket from "../components/cardMarket";
 import Layout, { siteTitle } from "../components/layout";
+import { Box } from "@mui/system";
+import { IconButton } from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
+import { yellow } from "@mui/material/colors";
 
 export default function Home() {
   const [itemName, setItemName] = useState("");
@@ -35,32 +39,57 @@ export default function Home() {
     }
   };
 
+  const handleClear = () => {
+    setItemName("");
+  };
+
+  const autoFocus = (input) => {
+    if (input) {
+      setTimeout(() => {
+        input.focus();
+      }, 100);
+    }
+  };
+
   return (
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          <TextField
-            onKeyUp={handleKeypress}
-            fullWidth
-            size="small"
-            id="outlined-basic"
-            variant="outlined"
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
-          />
-        </Grid>
-        <Grid item xs={6}>
-          <LoadingButton
-            loading={loading}
-            loadingPosition="start"
-            startIcon={<LocationSearchingIcon color="primary" />}
-            size="large"
-            onClick={getItemByName}
-          />
-        </Grid>
+
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          p: 1,
+          m: 1,
+        }}
+      >
+        <TextField
+          sx={{ width: "28%" }}
+          onKeyUp={handleKeypress}
+          size="small"
+          id="outlined-basic"
+          value={itemName}
+          onChange={(e) => setItemName(e.target.value)}
+          inputRef={autoFocus}
+          InputProps={{
+            endAdornment: (
+              <IconButton onClick={handleClear}>
+                <ClearIcon fontSize="small" />
+              </IconButton>
+            ),
+          }}
+        />
+        <LoadingButton
+          loading={loading}
+          loadingPosition="start"
+          startIcon={<LocationSearchingIcon sx={{ color: yellow[700] }} />}
+          size="large"
+          onClick={getItemByName}
+        />
+      </Box>
+      <Grid container spacing={1}>
         <CardMarket items={results} />
       </Grid>
     </Layout>
