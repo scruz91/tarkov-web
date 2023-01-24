@@ -1,11 +1,11 @@
+import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
 
 const name = "Your Name";
-export const siteTitle = "TarkovMarket";
+export const siteTitle = "PriceCheck";
 
 export default function Layout({ children, home }) {
   return (
@@ -30,16 +30,7 @@ export default function Layout({ children, home }) {
           <></>
         ) : (
           <>
-            <Link href="/">
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt=""
-              />
-            </Link>
+            <Link href="/"></Link>
             <h2 className={utilStyles.headingLg}>
               <Link href="/" className={utilStyles.colorInherit}>
                 {name}

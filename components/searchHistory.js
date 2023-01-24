@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Grid } from "@mui/material";
 import { Timeline } from "@mui/lab";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -19,7 +20,7 @@ export default function SearchHistory({ history }) {
       }}
     >
       {history.map((item) => (
-        <Grid item xs={4}>
+        <Grid key={item.name} item xs={4}>
           <TimelineItem>
             <TimelineOppositeContent color="textSecondary">
               {new Date()}

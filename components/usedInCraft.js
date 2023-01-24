@@ -1,24 +1,21 @@
+import React from "react";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
 
 export default function UsedInCraft({ craftsUsing }) {
   return (
-    <>
-      <Grid container spacing={1}>
-        {craftsUsing.map(({ level, rewardItems, station }) => (
-          <Grid item xs={12}>
-            {rewardItems.map(({ item }) => (
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.primary"
-                gutterBottom
-              >
-                {item.name} - {station.name} - {level}
-              </Typography>
-            ))}
-          </Grid>
-        ))}
-      </Grid>
-    </>
+    <React.Fragment>
+      {craftsUsing.map(({ level, rewardItems, station }) =>
+        rewardItems.map(({ item }) => (
+          <Typography
+            key={item.name}
+            sx={{ fontSize: 14 }}
+            color="text.primary"
+            gutterBottom
+          >
+            {item.name} - {station.name} [{level}]
+          </Typography>
+        ))
+      )}
+    </React.Fragment>
   );
 }

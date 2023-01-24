@@ -1,3 +1,4 @@
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -22,9 +23,10 @@ export default function CardMarket({ items }) {
   };
 
   return (
-    <>
+    <React.Fragment>
       {items.map(
         ({
+          id,
           name,
           iconLink,
           sellFor,
@@ -33,7 +35,7 @@ export default function CardMarket({ items }) {
           usedInTasks,
           description,
         }) => (
-          <Grid item xs={4}>
+          <Grid key={id} item xs={4}>
             <Card variant="outlined">
               <CardContent>
                 <Grid container spacing={1}>
@@ -59,7 +61,7 @@ export default function CardMarket({ items }) {
                     </Box>
                   </Grid>
                   {sellFor.map(({ price, source }) => (
-                    <Grid item xs={4}>
+                    <Grid key={id + price} item xs={4}>
                       <AvatarChip
                         trader={source}
                         price={price.toLocaleString()}
@@ -123,6 +125,6 @@ export default function CardMarket({ items }) {
           </Grid>
         )
       )}
-    </>
+    </React.Fragment>
   );
 }

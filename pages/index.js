@@ -1,10 +1,10 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import LoadingButton from "@mui/lab/LoadingButton";
-
 import CardMarket from "../components/cardMarket";
 import Layout, { siteTitle } from "../components/layout";
 
@@ -16,11 +16,13 @@ export default function Home() {
   const getItemByName = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000/api/market/${itemName}`);
-      const data = await res.json();
-      console.log(data);
-      setLoading(false);
-      setResults(data);
+      await axios
+        .get(`http://localhost:5000/api/market/${itemName}`)
+        .then((res) => {
+          const data = res.data;
+          setLoading(false);
+          setResults(data);
+        });
     } catch (err) {
       console.log(err);
     }
