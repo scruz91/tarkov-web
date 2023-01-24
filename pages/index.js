@@ -11,7 +11,6 @@ import Layout, { siteTitle } from "../components/layout";
 import { Box } from "@mui/system";
 import { IconButton } from "@mui/material";
 import ClearIcon from "@mui/icons-material/Clear";
-import { yellow } from "@mui/material/colors";
 
 export default function Home() {
   const [itemName, setItemName] = useState("");
@@ -84,7 +83,9 @@ export default function Home() {
         <LoadingButton
           loading={loading}
           loadingPosition="start"
-          startIcon={<LocationSearchingIcon sx={{ color: yellow[700] }} />}
+          startIcon={
+            <LocationSearchingIcon sx={{ color: "text.secondary.main" }} />
+          }
           size="large"
           onClick={getItemByName}
         />
