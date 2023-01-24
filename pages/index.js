@@ -1,5 +1,6 @@
+import React from "react";
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
