@@ -1,40 +1,36 @@
 import React from "react";
 import Head from "next/head";
 import { useState } from "react";
-import axios from "axios";
-import TextField from "@mui/material/TextField";
-import Grid from "@mui/material/Grid";
-import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
-import LoadingButton from "@mui/lab/LoadingButton";
-import CardMarket from "../components/cardMarket";
-import Layout, { siteTitle } from "../components/layout";
 import { Box } from "@mui/system";
 import { IconButton } from "@mui/material";
+import LoadingButton from "@mui/lab/LoadingButton";
+import TextField from "@mui/material/TextField";
+import Grid from "@mui/material/Grid";
 import ClearIcon from "@mui/icons-material/Clear";
+import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
+
+import CardMarket from "../components/cardMarket";
+import Layout, { siteTitle } from "../components/layout";
+
+import { getItemByName } from "../lib/item";
 
 export default function Home() {
   const [itemName, setItemName] = useState("");
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const getItemByName = async () => {
-    try {
-      setLoading(true);
-      await axios
-        .get(`http://localhost:5000/api/market/${itemName}`)
-        .then((res) => {
-          const data = res.data;
-          setLoading(false);
-          setResults(data);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+  const callGetItemByName = async () => {
+    setIsLoading(true);
+    const data = await getItemByName(itemName);
+    setResults(data);
+    setIsLoading(false);
   };
 
   const handleKeypress = (e) => {
-    if (e.keyCode === 13) {
-      getItemByName();
+    if (!isLoading) {
+      if (e.keyCode === 13) {
+        callGetItemByName();
+      }
     }
   };
 
@@ -74,20 +70,20 @@ export default function Home() {
           inputRef={autoFocus}
           InputProps={{
             endAdornment: (
-              <IconButton onClick={handleClear}>
+              <IconButton disabled={isLoading} onClick={handleClear}>
                 <ClearIcon fontSize="small" />
               </IconButton>
             ),
           }}
         />
         <LoadingButton
-          loading={loading}
+          loading={isLoading}
           loadingPosition="start"
           startIcon={
             <LocationSearchingIcon sx={{ color: "text.secondary.main" }} />
           }
           size="large"
-          onClick={getItemByName}
+          onClick={callGetItemByName}
         />
       </Box>
       <Grid container spacing={1}>
