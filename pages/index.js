@@ -34,7 +34,7 @@ export default function Home() {
       errorHandler(dispatcher);
       return;
     }
-
+    console.log(response.data);
     foundHandler(dispatcher, response.data);
   };
 

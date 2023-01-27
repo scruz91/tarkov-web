@@ -12,6 +12,7 @@
     "@mui/lab": "^5.0.0-alpha.116",
     "@mui/material": "^5.11.5",
     "axios": "^1.2.3",
+    "graphql-request": "^5.1.0",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
