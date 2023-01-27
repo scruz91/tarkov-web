@@ -8,34 +8,42 @@ import TextField from "@mui/material/TextField";
 import Grid from "@mui/material/Grid";
 import ClearIcon from "@mui/icons-material/Clear";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
+import Alert from "@mui/material/Alert";
 
 import CardMarket from "../components/cardMarket";
 import Layout, { siteTitle } from "../components/layout";
-
 import { getItemByName } from "../lib/item";
+import { useNotificationContext } from "../context/notification";
+import {
+  searchHandler,
+  errorHandler,
+  foundHandler,
+  okHandler,
+} from "../reducers/apiReducer.js";
 
 export default function Home() {
   const [itemName, setItemName] = useState("");
-  const [results, setResults] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, dispatcher] = useNotificationContext();
 
   const callGetItemByName = async () => {
-    setIsLoading(true);
-    const data = await getItemByName(itemName);
-    setResults(data);
-    setIsLoading(false);
+    searchHandler(dispatcher);
+    const response = await getItemByName(itemName);
+
+    if (!response || "error" in response) {
+      searchHandler(dispatcher);
+      errorHandler(dispatcher);
+      return;
+    }
+
+    foundHandler(dispatcher, response.data);
   };
 
   const handleKeypress = (e) => {
-    if (!isLoading) {
+    if (!state.isLoading) {
       if (e.keyCode === 13) {
         callGetItemByName();
       }
     }
-  };
-
-  const handleClear = () => {
-    setItemName("");
   };
 
   const autoFocus = (input) => {
@@ -51,7 +59,18 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-
+      {state.isError ? (
+        <Alert
+          severity="error"
+          onClose={() => {
+            okHandler(dispatcher);
+          }}
+        >
+          El servidor no responde, quizá se cayó.
+        </Alert>
+      ) : (
+        ""
+      )}
       <Box
         sx={{
           display: "flex",
@@ -70,14 +89,19 @@ export default function Home() {
           inputRef={autoFocus}
           InputProps={{
             endAdornment: (
-              <IconButton disabled={isLoading} onClick={handleClear}>
+              <IconButton
+                disabled={state.isLoading}
+                onClick={() => {
+                  setItemName("");
+                }}
+              >
                 <ClearIcon fontSize="small" />
               </IconButton>
             ),
           }}
         />
         <LoadingButton
-          loading={isLoading}
+          loading={state.isLoading}
           loadingPosition="start"
           startIcon={
             <LocationSearchingIcon sx={{ color: "text.secondary.main" }} />
@@ -87,7 +111,7 @@ export default function Home() {
         />
       </Box>
       <Grid container spacing={1}>
-        <CardMarket items={results} />
+        {state.results ? <CardMarket items={state.results} /> : ""}
       </Grid>
     </Layout>
   );

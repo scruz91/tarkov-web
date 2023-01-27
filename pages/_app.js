@@ -6,6 +6,7 @@ import Box from "@mui/material/Box";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { blue, yellow } from "@mui/material/colors";
+import { NotificationProvider } from "../context/notification";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
@@ -74,7 +75,9 @@ export default function ToggleColorMode({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <SwitchTheme />
-        <Component {...pageProps} />
+        <NotificationProvider>
+          <Component {...pageProps} />
+        </NotificationProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
