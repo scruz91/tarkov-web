@@ -29,9 +29,9 @@ export default function Home() {
     searchHandler(dispatcher);
     const response = await getItemByName(itemName);
 
-    if (!response || "error" in response) {
+    if (!response || "error" in response || response.status == 500) {
       searchHandler(dispatcher);
-      errorHandler(dispatcher);
+      errorHandler(dispatcher, response.data.error.message);
       return;
     }
     console.log(response.data);
@@ -66,7 +66,7 @@ export default function Home() {
             okHandler(dispatcher);
           }}
         >
-          El servidor no responde, quizá se cayó.
+          El servidor no responde: [{state.errorMessage}]
         </Alert>
       ) : (
         ""
