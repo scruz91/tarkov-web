@@ -1,7 +1,5 @@
 import React from "react";
 import Typography from "@mui/material/Typography";
-import Link from "next/link";
-import { errorHandler } from "@reducers/apiReducer.js";
 import { useNotificationContext } from "@context/notification.jsx";
 
 export default function UsedInCraft({ craftsUsing }) {

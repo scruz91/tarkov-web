@@ -3,7 +3,7 @@ import Head from "next/head";
 import styles from "@styles/layout.module.css";
 import Link from "next/link";
 
-export const siteTitle = "TarkovItemsSearch";
+export const siteTitle = "TarkovItemSearch";
 
 export default function Layout({ children, home }) {
   return (
@@ -12,7 +12,7 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="tarkov-price-check"
-          content="Precio y uso de los items del tarkov."
+          content="Precio y uso de los items del Tarkov."
         />
         <meta
           property="og:image"
