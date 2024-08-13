@@ -10,10 +10,10 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
 
-import AvatarChip from "./avatarChip";
-import UsedInTasks from "./usedInTask";
-import UsedInCraft from "./usedInCraft";
-import UsedInBarter from "./usedInBarter";
+import AvatarChip from "./AvatarChip";
+import UsedInTasks from "./UsedInTask";
+import UsedInCraft from "./UsedInCraft.jsx";
+import UsedInBarter from "./UsedInBarter";
 
 export default function CardMarket({ items }) {
   const [expanded, setExpanded] = useState("panel1");

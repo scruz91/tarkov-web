@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import styles from "../styles/layout.module.css";
+import styles from "@styles/layout.module.css";
 import Link from "next/link";
 
-export const siteTitle = "PriceCheck";
+export const siteTitle = "TarkovItemsSearch";
 
 export default function Layout({ children, home }) {
   return (
@@ -11,8 +11,8 @@ export default function Layout({ children, home }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
-          name="description"
-          content="Learn how to build a personal website using Next.js"
+          name="tarkov-price-check"
+          content="Precio y uso de los items del tarkov."
         />
         <meta
           property="og:image"

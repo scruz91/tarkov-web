@@ -1,15 +1,21 @@
 import React from "react";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
+import { yellow } from "@mui/material/colors";
 
 export default function UsedInTasks({ tasks }) {
   return (
     <>
       {tasks.map(({ name, trader, wikiLink, minPlayerLevel }) => (
         <Typography key={name} sx={{ fontSize: 14 }} gutterBottom>
-          <Link href={wikiLink} color="text.secondary.main">
+          <a
+            href={wikiLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: yellow[700], textDecoration: 'none' }} 
+          >
             {name} - {trader.name} [{minPlayerLevel}]
-          </Link>
+          </a>
         </Typography>
       ))}
     </>
