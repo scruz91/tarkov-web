@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import { blue, yellow } from "@mui/material/colors";
-import { NotificationProvider } from "../context/notification";
+import { NotificationProvider } from "@context/notification";
 
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 

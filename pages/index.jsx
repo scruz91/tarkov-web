@@ -10,16 +10,16 @@ import ClearIcon from "@mui/icons-material/Clear";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import Alert from "@mui/material/Alert";
 
-import CardMarket from "../components/cardMarket";
-import Layout, { siteTitle } from "../components/layout";
-import { getItemByName } from "../lib/item";
-import { useNotificationContext } from "../context/notification";
+import CardMarket from "@components/CardMarket.jsx";
+import Layout, { siteTitle } from "./layout.jsx";
+import { getItemByName } from "@lib/item.js";
+import { useNotificationContext } from "@context/notification.jsx";
 import {
   searchHandler,
   errorHandler,
   foundHandler,
   okHandler,
-} from "../reducers/apiReducer.js";
+} from "@reducers/apiReducer.js";
 
 export default function Home() {
   const [itemName, setItemName] = useState("");
@@ -109,6 +109,7 @@ export default function Home() {
           size="large"
           onClick={callGetItemByName}
         />
+        
       </Box>
       <Grid container spacing={1}>
         {state.results ? <CardMarket items={state.results} /> : ""}

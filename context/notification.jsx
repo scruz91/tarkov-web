@@ -1,6 +1,6 @@
 import { React, createContext, useContext } from "react";
 import { useReducer } from "react";
-import { myReducer, initialState } from "../reducers/apiReducer.js";
+import { myReducer, initialState } from "@reducers/apiReducer.js";
 
 const Context = createContext();
 
